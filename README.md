@@ -44,7 +44,7 @@
 
   ### Run directly:
   ```bash
-    bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/server/script.sh)"
+    bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/script.sh)"
   ```
 
   ## 💻 Usage
