@@ -27,9 +27,7 @@
 </details> 
 
 <details>
-  <summary>Server</summary>
-  
-  # 🔧 Simple Linux Backup & Restore Script
+  <summary>🔧 Simple Linux Backup & Restore Script</summary>
 
   ---
 
