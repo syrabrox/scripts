@@ -1,4 +1,4 @@
-# README v1.0.0
+# README v2.0.0
 <details>
   <summary>🖥️ Ubuntu Desktop Setup</summary>
 
