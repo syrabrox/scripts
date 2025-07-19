@@ -38,14 +38,14 @@ backup() {
     DEST_DIR="$BACKUP_DIR/$DATE"
     sudo mkdir -p "$DEST_DIR"
 
-    echo "Backing up /var/lib/docker to $DEST_DIR/docker-$DATE.tar.gz"
-    sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -czpvf "$DEST_DIR/docker-$DATE.tar.gz" /var/lib/docker
+    PATHS=("/var/lib/docker" "/home/asa" "/media")
 
-    echo "Backing up /home/asa to $DEST_DIR/home-asa-$DATE.tar.gz"
-    sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -czpvf "$DEST_DIR/home-asa-$DATE.tar.gz" /home/asa
-
-    echo "Backing up /media to $DEST_DIR/media-$DATE.tar.gz"
-    sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -czpvf "$DEST_DIR/media-$DATE.tar.gz" /media
+    for PATH in "${PATHS[@]}"; do
+        BASENAME=$(basename "$PATH")
+        ARCHIVE="$DEST_DIR/${BASENAME//\//-}-$DATE.tar.gz"
+        echo "Backing up ($PATH) to $ARCHIVE"
+        sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -czpvf "$ARCHIVE" "$PATH"
+    done
 
     END_TIME=$(date +%s)
     DURATION=$((END_TIME - START_TIME))
