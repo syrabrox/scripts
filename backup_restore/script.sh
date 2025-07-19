@@ -4,7 +4,6 @@ set -e
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
 WEBHOOK_FILE="$BACKUP_DIR/webhook.txt"
-echo $WEBHOOK_FILE
 DATE=$(date +'%Y-%m-%d_%H-%M-%S')
 
 if [ -f "$WEBHOOK_FILE" ]; then
@@ -29,10 +28,9 @@ if [ -e "$LOCKFILE" ]; then
     exit 1
 fi
 
-touch "$LOCKFILE"
-trap 'rm -f "$LOCKFILE"' EXIT
 
 backup() {
+    touch "$LOCKFILE"
     START_TIME=$(date +%s)
     echo "Backup started: $(date)"
 
@@ -55,6 +53,8 @@ backup() {
     echo "⏳ Duration: ${DURATION} seconds"
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
+
+    rm -f "$LOCKFILE"
 }
 
 restore() {
