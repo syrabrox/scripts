@@ -15,7 +15,7 @@
   - 🛠️ **Grub Customizer**
   - 📦 **Flatpak**
   - 🖥️ **Mission Center**
-  - 🚫 **Sober (No Distractions)**
+  - 🚫 **Sober**
 
   ---
 
