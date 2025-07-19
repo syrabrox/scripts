@@ -22,7 +22,7 @@
   ### ▶️ Schnellstart
 
   ```bash
-    bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/v1.0.0/ubuntu_desktop/script.sh)"
+    bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
   ```
 </details> 
 
@@ -44,7 +44,7 @@
 
   ### Run directly:
   ```bash
-    bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/v1.0.0/backup_restore/script.sh)"
+    bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/script.sh)"
   ```
 
   ## 💻 Usage
