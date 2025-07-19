@@ -1,7 +1,8 @@
 # scripts
 <details>
   <summary>Ubuntu Desktop</summary>
-  ### Installing
+  # Installing
+  ---
   - Curl
   - Brave
   - Discord
@@ -12,7 +13,7 @@
   - Flatpak
   - Mission Center
   - Sober
-
+  ---
   ### Run
   ```bash
     bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
