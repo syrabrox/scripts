@@ -36,13 +36,20 @@ backup() {
     DEST_DIR="$BACKUP_DIR/$DATE"
     sudo mkdir -p "$DEST_DIR"
 
-    PATHS=("/home/asa/test")
+    PATHS=(
+        "/var/lib/docker"
+        "/home/asa"
+        "/media"
+    )
 
-    for PATH in "${PATHS[@]}"; do
-        BASENAME=$(basename "$PATH")
-        ARCHIVE="$DEST_DIR/${BASENAME//\//-}-$DATE.tar.gz"
-        echo "Backing up ($PATH) to $ARCHIVE"
-        sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -czpvf "$ARCHIVE" "$PATH"
+    for path in "${PATHS[@]}"; do
+        if [ -e "$path" ]; then
+            safe_name=$(echo "$path" | sed 's|/|-|g' | sed 's/^-*//')
+            echo "Backing up $path to $DEST_DIR/${safe_name}-$DATE.tar.gz"
+            sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -czpvf "$DEST_DIR/${safe_name}-$DATE.tar.gz" "$path"
+        else
+            echo "Warning: Path $path does not exist, skipping."
+        fi
     done
 
     END_TIME=$(date +%s)
