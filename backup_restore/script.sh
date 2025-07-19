@@ -3,7 +3,7 @@ set -e
 
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
-WEBHOOK_FILE="./webhook.txt"
+WEBHOOK_FILE="$BACKUP_DIR/webhook.txt"
 DATE=$(date +'%Y-%m-%d_%H-%M-%S')
 
 if [ -f "$WEBHOOK_FILE" ]; then
