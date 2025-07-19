@@ -1,23 +1,26 @@
-# scripts
+# README
 <details>
-  <summary>Ubuntu Desktop</summary>
+  <summary>🖥️ Ubuntu Desktop Setup</summary>
+
   ---
-  # Installing
-  
-  - Curl
-  - Brave
-  - Discord
-  - Steam
-  - Lutris
-  - Stacer
-  - Grub Customizer
-  - Flatpak
-  - Mission Center
-  - Sober
-  
+
+  ### 📦 Installierte Tools & Programme
+
+  - 🌀 **Curl**
+  - 🦁 **Brave Browser**
+  - 💬 **Discord**
+  - 🎮 **Steam**
+  - 🍷 **Lutris**
+  - 📊 **Stacer**
+  - 🛠️ **Grub Customizer**
+  - 📦 **Flatpak**
+  - 🖥️ **Mission Center**
+  - 🚫 **Sober (No Distractions)**
+
   ---
-  
-  ### Run
+
+  ### ▶️ Schnellstart
+
   ```bash
     bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
   ```
@@ -25,10 +28,8 @@
 
 <details>
   <summary>Server</summary>
+  
   # 🔧 Simple Linux Backup & Restore Script
-
-  This script creates compressed backups of important folders like `/var/lib/docker`, `/home/asa`, and `/media`.  
-  It also supports **restore** and sends status updates to a Discord webhook.
 
   ---
 
