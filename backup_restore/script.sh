@@ -37,9 +37,7 @@ backup() {
     sudo mkdir -p "$DEST_DIR"
 
     PATHS=(
-        "/var/lib/docker"
-        "/home/asa"
-        "/media"
+        "/home/asa/test"
     )
 
     for path in "${PATHS[@]}"; do
