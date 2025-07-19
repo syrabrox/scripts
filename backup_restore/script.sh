@@ -137,7 +137,6 @@ restore_tar() {
     echo "⏳ Duration: ${DURATION} seconds"
 }
 
-
 case "$1" in
     Backup|backup) backup ;;
     Restore|restore) restore ;;
