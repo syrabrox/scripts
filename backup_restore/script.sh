@@ -38,7 +38,7 @@ backup() {
     DEST_DIR="$BACKUP_DIR/$DATE"
     sudo mkdir -p "$DEST_DIR"
 
-    PATHS=("/var/lib/docker" "/home/asa" "/media")
+    PATHS=("/home/asa/test")
 
     for PATH in "${PATHS[@]}"; do
         BASENAME=$(basename "$PATH")
