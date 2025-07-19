@@ -74,6 +74,10 @@ restore() {
 
     echo "✅ Restore completed at $(date)"
     echo "⏳ Duration: ${DURATION} seconds"
+    
+    sudo systemctl stop docker
+    sudo systemctl start docker
+    docker update --restart unless-stopped $(docker ps -q)
 
     send_webhook "♻️ **Restore completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
 }
