@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 set -e
 
 LOCKFILE="/tmp/backup.lock"
@@ -23,13 +24,11 @@ send_webhook() {
          "$WEBHOOK_URL"
 }
 
-if [ -e "$LOCKFILE" ]; then
-    echo "❗ A backup or restore process is already running (Lockfile: $LOCKFILE)"
-    exit 1
-fi
-
-
 backup() {
+    if [ -e "$LOCKFILE" ]; then
+        echo "❗ A backup or restore process is already running (Lockfile: $LOCKFILE)"
+        exit 1
+    fi
     touch "$LOCKFILE"
     START_TIME=$(date +%s)
     echo "Backup started: $(date)"
