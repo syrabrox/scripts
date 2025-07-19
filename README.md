@@ -1,9 +1,8 @@
 # scripts
 <details>
   <summary>Ubuntu Desktop</summary>
-  # Installing
-  
   ---
+  # Installing
   
   - Curl
   - Brave
