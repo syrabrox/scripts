@@ -37,7 +37,9 @@ backup() {
     sudo mkdir -p "$DEST_DIR"
 
     PATHS=(
-        "/home/asa/test"
+        "/var/lib/docker/"
+        "/home/asa/"
+        "/media/"
     )
 
     for path in "${PATHS[@]}"; do
@@ -62,30 +64,80 @@ backup() {
 }
 
 restore() {
-    read -p "Enter full path to the backup file (.tar.gz): " BACKUP_FILE
-    if [ ! -f "$BACKUP_FILE" ]; then
-        echo "❌ File not found: $BACKUP_FILE"
+    echo "Choose restore mode:"
+    echo "1) Manual (enter full path to .tar.gz file)"
+    echo "2) Automatic (select folder in $BACKUP_DIR to restore all .tar.gz files)"
+    read -rp "Enter choice (1 or 2): " MODE
+
+    if [ "$MODE" == "1" ]; then
+        read -rp "Enter full path to the backup file (.tar.gz): " BACKUP_FILE
+        if [ ! -f "$BACKUP_FILE" ]; then
+            echo "❌ File not found: $BACKUP_FILE"
+            exit 1
+        fi
+        restore_tar "$BACKUP_FILE"
+
+    elif [ "$MODE" == "2" ]; then
+        if [ ! -d "$BACKUP_DIR" ]; then
+            echo "❌ Backup directory not found: $BACKUP_DIR"
+            exit 1
+        fi
+
+        echo "Available backup folders:"
+        mapfile -t FOLDERS < <(find "$BACKUP_DIR" -mindepth 1 -maxdepth 1 -type d | sort)
+        if [ ${#FOLDERS[@]} -eq 0 ]; then
+            echo "❌ No backup folders found in $BACKUP_DIR"
+            exit 1
+        fi
+
+        for i in "${!FOLDERS[@]}"; do
+            echo "$((i+1)). $(basename "${FOLDERS[i]}")"
+        done
+
+        read -rp "Select folder number to restore: " FOLDER_CHOICE
+        if ! [[ "$FOLDER_CHOICE" =~ ^[0-9]+$ ]] || ((FOLDER_CHOICE < 1)) || ((FOLDER_CHOICE > ${#FOLDERS[@]})); then
+            echo "❌ Invalid selection"
+            exit 1
+        fi
+
+        SELECTED_FOLDER="${FOLDERS[$((FOLDER_CHOICE-1))]}"
+        echo "Selected folder: $SELECTED_FOLDER"
+
+        mapfile -t TARFILES < <(find "$SELECTED_FOLDER" -maxdepth 1 -type f -name '*.tar.gz' | sort)
+        if [ ${#TARFILES[@]} -eq 0 ]; then
+            echo "❌ No .tar.gz files found in $SELECTED_FOLDER"
+            exit 1
+        fi
+
+        for tarfile in "${TARFILES[@]}"; do
+            echo "Restoring $tarfile ..."
+            restore_tar "$tarfile"
+        done
+
+    else
+        echo "❌ Invalid mode selected."
         exit 1
     fi
 
-    START_TIME=$(date +%s)
-    echo "Restore started: $(date)"
-
-    echo "Restoring from $BACKUP_FILE"
-    sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -xzpvf "$BACKUP_FILE" -C /
-
-    END_TIME=$(date +%s)
-    DURATION=$((END_TIME - START_TIME))
-
-    echo "✅ Restore completed at $(date)"
-    echo "⏳ Duration: ${DURATION} seconds"
-    
     sudo systemctl stop docker
     sudo systemctl start docker
     docker update --restart unless-stopped $(docker ps -q)
 
-    send_webhook "♻️ **Restore completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
+    send_webhook "♻️ **Restore completed!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
 }
+
+restore_tar() {
+    local BACKUP_FILE="$1"
+    START_TIME=$(date +%s)
+    echo "Restore started: $(date)"
+    echo "Restoring from $BACKUP_FILE"
+    sudo tar --xattrs --xattrs-include='*' --acls --selinux --numeric-owner -xzpvf "$BACKUP_FILE" -C /
+    END_TIME=$(date +%s)
+    DURATION=$((END_TIME - START_TIME))
+    echo "✅ Restore completed at $(date)"
+    echo "⏳ Duration: ${DURATION} seconds"
+}
+
 
 case "$1" in
     Backup|backup) backup ;;
