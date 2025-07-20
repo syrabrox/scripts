@@ -1,6 +1,6 @@
 # README v2.0.0
 ```bash
-  bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
+bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
 ```
 <details>
   <summary>🖥️ Ubuntu Desktop Setup</summary>

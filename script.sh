@@ -1,5 +1,5 @@
 #!/bin/bash
-clear
+
 set -e
 echo "====================="
 echo " Run Script v2.0.0"
