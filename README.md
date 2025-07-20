@@ -62,4 +62,12 @@ bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.c
   ```bash
   ./backup.sh restore
   ```
+  background mode:
+  nohup ./backup.sh > /dev/null 2>&1 &
+  ```bash
+  nohup ./backup.sh backup > /dev/null 2>&1 &
+  ```
+  ```bash
+  nohup ./backup.sh restore > /dev/null 2>&1 &
+  ```
 </details> 
