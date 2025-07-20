@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 set -e
 echo "==============================="
 echo " Backup/Restore Script v2.0.0"
