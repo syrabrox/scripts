@@ -1,6 +1,6 @@
 # README
 ```bash
-bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
+bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
 ```
 <details>
   <summary>🖥️ Ubuntu Desktop Setup</summary>
@@ -25,7 +25,7 @@ bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/head
   ### ▶️ Schnellstart
 
   ```bash
-  bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
+  bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
   ```
 </details> 
 
@@ -47,7 +47,7 @@ bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/head
 
   ### Run directly:
   ```bash
-  bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/script.sh)"
+  bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/script.sh)"
   ```
 
   ## 💻 Usage
