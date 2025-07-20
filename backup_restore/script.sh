@@ -2,7 +2,7 @@
 clear
 set -e
 echo "==============================="
-echo " Backup/Restore Script v2.0.2"
+echo " Backup/Restore Script v2.0.3"
 echo "==============================="
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
@@ -31,7 +31,7 @@ backup() {
         echo "❗ A backup or restore process is already running (Lockfile: $LOCKFILE)"
         exit 1
     fi
-    if [ -n "$(sudo docker ps -aq)" ]; then
+    if [ -n "$(sudo docker ps -q)" ]; then
         sudo docker stop $(docker ps -q)
     fi
     send_webhook "📦 **Backup Started!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
@@ -66,8 +66,8 @@ backup() {
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
     rm -f "$LOCKFILE"
-    if [ -z "$(sudo docker ps -q)" ]; then
-        sudo docker start $(docker ps -q)
+    if [ -z "$(sudo docker ps -aq)" ]; then
+        sudo docker start $(docker ps -aq)
     fi
 }
 
