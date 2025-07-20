@@ -1,4 +1,4 @@
-from flask import Flask, Response, redirect
+from flask import Flask, Response, redirect, request
 import requests
 
 app = Flask(__name__)
@@ -10,8 +10,9 @@ def home():
     r = requests.get(REMOTE_URL)
     return Response(r.text, content_type='text/html')
 
-@app.route('/<path:anything>')
-def catch_all(anything):
-    return redirect('/')
+@app.before_request
+def redirect_everything_to_root():
+    if request.path != '/':
+        return redirect('/')
 
 app.run(host='0.0.0.0', port=80)
