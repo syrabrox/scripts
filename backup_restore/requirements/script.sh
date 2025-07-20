@@ -52,7 +52,7 @@ stop_server() {
     fi
 }
 
-case "$1" in
+case "$0" in
     on)
         start_server
         ;;
