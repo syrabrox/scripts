@@ -2,7 +2,7 @@
 clear
 set -e
 echo "==============================="
-echo " Backup/Restore Script v2.0.0"
+echo " Backup/Restore Script v2.0.1"
 echo "==============================="
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
