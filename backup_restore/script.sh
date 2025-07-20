@@ -2,7 +2,7 @@
 clear
 set -e
 echo "==============================="
-echo " Backup/Restore Script v2.0.3"
+echo " Backup/Restore Script v2.0.4"
 echo "==============================="
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
@@ -66,7 +66,7 @@ backup() {
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
     rm -f "$LOCKFILE"
-    if [ -z "$(sudo docker ps -aq)" ]; then
+    if [ -n "$(sudo docker ps -aq)" ]; then
         sudo docker start $(docker ps -aq)
     fi
 }
