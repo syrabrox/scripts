@@ -1,4 +1,4 @@
-from flask import Flask, Response, redirect
+from flask import Flask, Response, redirect, request
 import requests
 
 app = Flask(__name__)
@@ -13,5 +13,6 @@ def home():
 @app.route('/<path:anything>')
 def catch_all(anything):
     return redirect('/')
+
 
 app.run(host='0.0.0.0', port=80)
