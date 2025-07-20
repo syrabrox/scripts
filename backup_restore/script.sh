@@ -33,7 +33,8 @@ backup() {
         exit 1
     fi
     touch "$LOCKFILE"
-    docker stop $(docker ps -q)
+    if [ -n "$(docker ps -aq)" ]; then
+        docker stop $(docker ps -q)
     START_TIME=$(date +%s)
     echo "Backup started: $(date)"
 
@@ -64,7 +65,8 @@ backup() {
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
     rm -f "$LOCKFILE"
-    docker start $(docker ps -q)
+    if [ -z "$(docker ps -q)" ]; then
+        docker start $(docker ps -q)
 }
 
 restore() {
