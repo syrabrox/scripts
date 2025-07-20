@@ -1,4 +1,4 @@
-# README v2.0.0
+# README
 ```bash
 bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
 ```
