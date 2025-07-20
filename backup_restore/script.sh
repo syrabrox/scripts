@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
-
+echo "==============================="
+echo " Backup/Restore Script v2.0.0"
+echo "==============================="
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
 WEBHOOK_FILE="$BACKUP_DIR/webhook.txt"

@@ -1,10 +1,8 @@
 #!/bin/bash
-
 set -e
-
-echo "==========================="
-echo "  System Setup Script"
-echo "==========================="
+echo "============================="
+echo " System Setup Script v2.0.0"
+echo "============================="
 
 echo "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
