@@ -35,6 +35,7 @@ backup() {
     touch "$LOCKFILE"
     if [ -n "$(docker ps -aq)" ]; then
         docker stop $(docker ps -q)
+    fi
     START_TIME=$(date +%s)
     echo "Backup started: $(date)"
 
@@ -67,6 +68,7 @@ backup() {
     rm -f "$LOCKFILE"
     if [ -z "$(docker ps -q)" ]; then
         docker start $(docker ps -q)
+    fi
 }
 
 restore() {
