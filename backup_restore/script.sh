@@ -31,8 +31,8 @@ backup() {
         echo "❗ A backup or restore process is already running (Lockfile: $LOCKFILE)"
         exit 1
     fi
-    if [ -n "$(docker ps -aq)" ]; then
-        docker stop $(docker ps -q)
+    if [ -n "$(sudo docker ps -aq)" ]; then
+        sudo docker stop $(docker ps -q)
     fi
     send_webhook "📦 **Backup Started!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
     touch "$LOCKFILE"
@@ -66,8 +66,8 @@ backup() {
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
     rm -f "$LOCKFILE"
-    if [ -z "$(docker ps -q)" ]; then
-        docker start $(docker ps -q)
+    if [ -z "$(sudo docker ps -q)" ]; then
+        sudo docker start $(docker ps -q)
     fi
 }
 
