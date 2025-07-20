@@ -35,7 +35,7 @@ backup() {
         sudo docker stop $(docker ps -q)
     fi
     send_webhook "📦 **Backup Started!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
-    sudo bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/requirements/script.sh)" on
+    sudo bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/requirements/script.sh)" on
     touch "$LOCKFILE"
     START_TIME=$(date +%s)
     echo "Backup started: $(date)"
@@ -66,7 +66,7 @@ backup() {
     echo "⏳ Duration: ${DURATION} seconds"
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
-    sudo bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/requirements/script.sh)" off
+    sudo bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/requirements/script.sh)" off
     rm -f "$LOCKFILE"
     if [ -n "$(sudo docker ps -aq)" ]; then
         sudo docker start $(docker ps -aq)
