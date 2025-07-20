@@ -1,4 +1,5 @@
 #!/bin/bash
+clear
 set -e
 echo "============================="
 echo " System Setup Script v2.0.0"
