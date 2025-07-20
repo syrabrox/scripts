@@ -2,7 +2,7 @@
 clear
 set -e
 echo "==============================="
-echo " Backup/Restore Script v2.0.4"
+echo " Backup/Restore Script v3.0.0"
 echo "==============================="
 LOCKFILE="/tmp/backup.lock"
 BACKUP_DIR="/backup"
@@ -35,6 +35,7 @@ backup() {
         sudo docker stop $(docker ps -q)
     fi
     send_webhook "📦 **Backup Started!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
+    sudo bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/requirements/script.sh)" on
     touch "$LOCKFILE"
     START_TIME=$(date +%s)
     echo "Backup started: $(date)"
@@ -65,10 +66,12 @@ backup() {
     echo "⏳ Duration: ${DURATION} seconds"
 
     send_webhook "📦 **Backup completed!**\nServer: \`$(hostname)\`\nDuration: \`${DURATION}\` seconds\nTime: \`$(date)\`"
+    sudo bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/requirements/script.sh)" off
     rm -f "$LOCKFILE"
     if [ -n "$(sudo docker ps -aq)" ]; then
         sudo docker start $(docker ps -aq)
     fi
+
 }
 
 restore() {

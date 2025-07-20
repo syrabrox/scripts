@@ -1,7 +1,4 @@
-# README
-```bash
-bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
-```
+# README v2.0.0
 <details>
   <summary>🖥️ Ubuntu Desktop Setup</summary>
 
@@ -25,7 +22,7 @@ bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.c
   ### ▶️ Schnellstart
 
   ```bash
-  bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
+  bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/ubuntu_desktop/script.sh)"
   ```
 </details> 
 
@@ -47,7 +44,7 @@ bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.c
 
   ### Run directly:
   ```bash
-  bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/script.sh)"
+  bash -c "$(curl -sS https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/backup_restore/script.sh)"
   ```
 
   ## 💻 Usage
@@ -61,13 +58,5 @@ bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.c
   ```
   ```bash
   ./backup.sh restore
-  ```
-  background mode:
-  nohup ./backup.sh > /dev/null 2>&1 &
-  ```bash
-  nohup ./backup.sh backup > /dev/null 2>&1 &
-  ```
-  ```bash
-  nohup ./backup.sh restore > /dev/null 2>&1 &
   ```
 </details> 

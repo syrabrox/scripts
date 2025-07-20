@@ -2,7 +2,7 @@
 clear
 set -e
 echo "============================="
-echo " System Setup Script v2.0.0"
+echo " System Setup Script v3.0.0"
 echo "============================="
 
 echo "Updating system packages..."

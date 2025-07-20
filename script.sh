@@ -2,7 +2,7 @@
 clear
 set -e
 echo "====================="
-echo " Run Script v2.0.1"
+echo " Run Script v3.0.0"
 echo "====================="
 
 backup_restore() {
