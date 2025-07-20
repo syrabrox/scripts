@@ -27,6 +27,7 @@ send_webhook() {
 }
 
 backup() {
+    send_webhook "📦 **Backup Started!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
     if [ -e "$LOCKFILE" ]; then
         echo "❗ A backup or restore process is already running (Lockfile: $LOCKFILE)"
         exit 1
@@ -67,6 +68,7 @@ backup() {
 }
 
 restore() {
+    send_webhook "📦 **Restore Started!**\nServer: \`$(hostname)\`\nTime: \`$(date)\`"
     echo "Choose restore mode:"
     echo "1) Manual (enter full path to .tar.gz file)"
     echo "2) Automatic (select folder in $BACKUP_DIR to restore all .tar.gz files)"
