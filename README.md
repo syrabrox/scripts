@@ -74,4 +74,4 @@ bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.c
 </details>
 # ToDo
 
-- [] On Restore check if Docker, Python3 exists or install
+- [ ] On Restore check if Docker, Python3 exists or install
