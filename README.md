@@ -1,4 +1,5 @@
 # README
+
 ```bash
 bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/syrabrox/scripts/refs/heads/main/script.sh)"
 ```
@@ -70,4 +71,7 @@ bash -c "$(curl -sS -H 'Cache-Control: no-cache' https://raw.githubusercontent.c
   ```bash
   nohup ./backup.sh restore > /dev/null 2>&1 &
   ```
-</details> 
+</details>
+# ToDo
+- Install packages like
+  Docker, Python3 on restore
